@@ -1,4 +1,4 @@
-class window.BlackjackView extends Backbone.View
+class window.cardView extends Backbone.View
   tagname: 'tr'
   template: _.template '<span>(<%= card %>)</span>'
   render: ->

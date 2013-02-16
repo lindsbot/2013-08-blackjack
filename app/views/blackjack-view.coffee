@@ -22,6 +22,7 @@ class window.BlackjackView extends Backbone.View
     Remember, in coffeescript you use an @ instead of this.
   ###
   initialize: ->
+    @model = new Deck
     # this is how you call a member function
     @reset()
       
@@ -31,7 +32,7 @@ class window.BlackjackView extends Backbone.View
     You'll probably want to set some instance properties, render 
   ###
   reset: ->
-    alert "game starting"
+    return @model.shuffle()
 
   ###
     Give the player another card. If the player has 21, they lose. If they have
@@ -39,7 +40,8 @@ class window.BlackjackView extends Backbone.View
     to hit or stand again.
   ###
   hit: ->
-    alert "TODO implement hit"
+    console.log(@model.deck[@model.deck.length-1])
+    return @model.deck.pop()
 
   ###
     Reveal the dealer's face down card. Give the dealer cards until they have 17
