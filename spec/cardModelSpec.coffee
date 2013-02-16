@@ -1,6 +1,5 @@
-describe "shuffle function", ->
+describe "deck constructor", ->
 
-  it "should create an array with a length of 52", ->
-    deck = new Deck
-    shuffled = deck.shuffle()
-    expect(shuffled.length).toBe(52);
+  it "should create a card collection that is poppable", ->
+    @collection = new Deck
+    console.log @collection.pop()
