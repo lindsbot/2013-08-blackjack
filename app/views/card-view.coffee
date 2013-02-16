@@ -1,5 +1,5 @@
-class window.cardView extends Backbone.View
-  tagname: 'tr'
-  template: _.template '<span>(<%= card %>)</span>'
+class window.CardView extends Backbone.View
+  tagname: 'span'
+  template: _.template '<%= value %> of <%= suit %>'
   render: ->
-    @$el.html(@template(@model.attributes))
+    @$el.html(@template(@model.attributes));

@@ -3,51 +3,35 @@
   Backbone.View.extend does.
 
   You need to explicitly define your class as a property of the global window
-  object, because coffeescript is always executed in an anonymous function scope 
-  instead of the global scope. 
-  
+  object, because coffeescript is always executed in an anonymous function scope
+  instead of the global scope.
+
   You can still normally access the class as BlackjackView everywhere, though.
 ###
 class window.BlackjackView extends Backbone.View
-
   events:
     "click .hit-button": "hit"
     "click .stand-button": "stand"
     "click .reset-button": "reset"
 
-  ###
-    In the constructor you'll want to define the variables that contain the
-    state of the game. Some examples that could be useful are already in there.
-
-    Remember, in coffeescript you use an @ instead of this.
-  ###
   initialize: ->
     @model = new Deck
-    # this is how you call a member function
+
+    # note: example code: @$el.append(subview.render())
+
+    # do we want a hand view?
+
+    # 2 cards (and subviews) for dealer
+    # 2 cards (and subviews) for player
+    # @subview = new CardView
     @reset()
-      
-  ###
-    This function is meant to reset the game state whenever a new round starts.
-  
-    You'll probably want to set some instance properties, render 
-  ###
+    #generate subview, using top of deck, for 2 dealer cards and 2 player cards.
   reset: ->
+    @subview.render()
     return @model.shuffle()
 
-  ###
-    Give the player another card. If the player has 21, they lose. If they have
-    21 points exactly, they win and if they have less than 21 points they can decide
-    to hit or stand again.
-  ###
   hit: ->
-    console.log(@model.deck[@model.deck.length-1])
     return @model.deck.pop()
 
-  ###
-    Reveal the dealer's face down card. Give the dealer cards until they have 17
-    points or more. If the dealer has over 21 points or the player has more points
-    than the dealer (but less than 21), the player wins. 
-  ###
   stand: ->
     alert "TOTO implement stand"
-
