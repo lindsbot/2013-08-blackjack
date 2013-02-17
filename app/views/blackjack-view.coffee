@@ -1,34 +1,51 @@
 class window.BlackjackView extends Backbone.View
+
   events:
     "click .hit-button": "hit"
     "click .stand-button": "stand"
     "click .reset-button": "reset"
-  playerHand: '.player-cards'
-  dealerHand: '.dealer-cards'
+
   initialize: ->
     @deck = new Deck
-    @getDealerHand()
-    @getPlayerHand()
-  reset: ->
-    $(@playerHand).html('')
-    $(@dealerHand).html('')
-    @initialize()
+    @draw '.player'
+    @draw '.player'
+    @draw '.dealer', true
+    @draw '.dealer'
 
   hit: ->
-    card = new CardView model: @deck.pop()
-    $(@playerHand).append card.render()
+    @draw '.player'
 
-  getPlayerHand: ->
-    card = new CardView model: @deck.pop()
-    $(@playerHand).append card.render()
-    card2 = new CardView model: @deck.pop()
-    $(@playerHand).append card2.render()
+  reset: ->
+    $('.player-cards').html('')
+    $('.dealer-cards').html('')
+    $('.dealer-score').html('0')
+    $('.player-score').html('0')
+    @initialize()
 
-  getDealerHand: ->
-    @coveredCard = new CardView model: @deck.pop()
-    $(@dealerHand).append @coveredCard.obfuscate()
-
-    card2 = new CardView model: @deck.pop()
-    $(@dealerHand).append card2.render()
   stand: ->
-    $('.obfuscate').removeClass().html @coveredCard.render()
+    $('.obfuscate').removeClass().html @sneakyCard.render()
+    score = parseInt $('.dealer-score').text()
+    score += @sneakyCard.model.attributes.value
+    $('.dealer-score').html(score)
+
+
+  draw: (selector, obfuscate) ->
+    card = @deck.pop()
+    view = new CardView model: card
+    cardValue = card.attributes.value
+    score = parseInt $(selector+'-score').text()
+
+    if obfuscate
+      $(selector+'-cards').append view.obfuscate()
+      @sneakyCard = view
+    else
+      $(selector+'-cards').append view.render()
+      if cardValue instanceof Array || @ace
+        @ace = true
+        @scoreWith11 = score + cardValue[0]
+        console.log(cardValue[0])
+        @scoreWith1 = score + cardValue[1]
+        score = @scoreWith11 + "or" + @scoreWith1
+      else
+        score += cardValue
+      $(selector+'-score').html(score)

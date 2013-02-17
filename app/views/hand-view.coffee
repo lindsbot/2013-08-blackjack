@@ -1,1 +1,0 @@
-hand-view.coffee
