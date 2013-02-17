@@ -1,10 +1,6 @@
 
 class window.Card extends Backbone.Model
 
-  initialize: (data) ->
-    this.rank = data.rank
-    this.suit = data.suit
-
 class window.Deck extends Backbone.Collection
 
   initialize: ->

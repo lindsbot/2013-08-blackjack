@@ -1,5 +1,5 @@
 describe "deck constructor", ->
 
-  it "should create a card collection that is poppable", ->
+  it "should create a card collection", ->
     @collection = new Deck
-    console.log @collection.pop()
+    expect(@collection.length).toBe 52
