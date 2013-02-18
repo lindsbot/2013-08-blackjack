@@ -34,9 +34,9 @@
 
     <script type="text/javascript">
       // Instantiate a blackjack view for the entire page.
-      var blackjackView = new BlackjackView({
-        el: window.document.body
-      });
+      $('body').append(new BlackjackView(
+        model: new Blackjack()
+      ).render());
     </script>
 
   </body>
