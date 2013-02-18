@@ -7,5 +7,11 @@ class window.Deck extends Backbone.Collection
       new Card
         rank: card % 13,
         suit: Math.floor(card / 13),
+        covered: 'uncovered'
 
-  deal: -> new Hand [ @pop(), @pop() ]
+  dealPlayer: -> new Hand [ @pop(), @pop() ]
+  dealDealer: ->
+    coveredCard = @pop().set 'covered', 'covered'
+    new Hand [ coveredCard, @pop()]
+  hit: (hand) ->
+    hand.add(@pop())

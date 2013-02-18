@@ -18,20 +18,19 @@ class window.BlackjackView extends Backbone.View
     <button class="stand-button">Stand</button>'
 
   events:
-    "click .hit-button": -> @playerHand.hit()
+    "click .hit-button": -> @model.attributes.deck.hit(@model.attributes.playerHand)
     "click .stand-button": -> @dealerHand.play()
     "click .reset-button": -> throw new Error 'arg! not implemented yet'
 
   initialize: ->
+    @render()
     @playerHandView = new HandView collection: @model.attributes.playerHand
+    @$('.player-cards').append @playerHandView.el
     @model.attributes.playerHand.on 'change', => @render
     @dealerHandView = new HandView collection: @model.attributes.dealerHand
+    @$('.dealer-cards').append @dealerHandView.el
     @model.attributes.dealerHand.on 'change', => @render
-    @render()
 
   render: ->
     @$el.children().detach()
     @$el.html @template()
-    @$('.player-cards').append @playerHandView.render()
-    @$('.dealer-cards').append @dealerHandView.render()
-    @$el
