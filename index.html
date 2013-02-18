@@ -12,32 +12,12 @@
 
   </head>
   <body>
-    <h1>Coffeescript Blackjack!</h1>
-
-    <div class="blackjack-table">
-    </div>
-
-    <h2>Dealer's cards</h2>
-    <div class="cards dealer-cards">
-    </div>
-
-    <h2>Your cards</h2>
-    <div class="cards player-cards">
-    </div>
-    <h2>Score</h2>
-    <p>Dealer: <span class="dealer-score">0</span></p>
-    <p>You: <span class="player-score">0</span></p>
-    <h2>Things to do</h2>
-    <button class="reset-button">Start over</button>
-    <button class="hit-button">Hit</button>
-    <button class="stand-button">Stand</button>
-
-    <script type="text/javascript">
-      // Instantiate a blackjack view for the entire page.
-      $('body').append(new BlackjackView(
-        model: new Blackjack()
-      ).render());
-    </script>
+  <script type="text/javascript">
+    // Instantiate a blackjack view for the entire page.
+    $('body').append(new BlackjackView({
+      model: new Blackjack()
+    }).render());
+  </script>
 
   </body>
 </html>

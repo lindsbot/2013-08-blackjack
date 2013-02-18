@@ -1,6 +1,7 @@
-class Blackjack extends Backbone.Model
+class window.Blackjack extends Backbone.Model
 
   initialize: ->
     @set 'deck', new Deck
-    @set 'playerHand', @deck.deal()
-    @set 'dealerHand', @deck.deal()
+    #should I be accessing the attributes directly?
+    @set 'playerHand', @attributes.deck.deal()
+    @set 'dealerHand', @attributes.deck.deal()

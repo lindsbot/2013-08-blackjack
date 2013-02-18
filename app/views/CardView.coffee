@@ -2,10 +2,11 @@ class window.CardView extends Backbone.View
 
   className: 'card'
 
-  template: _.template '<span class="...covered logic..."><%= rank %> of <%= suit %></span>'
+  template: _.template '<span class="<%= covered %>"><%= rankName %> of <%= suitName %></span>'
 
-  initialize: -> @model.on 'change', @render, @
+  initialize: -> 
+    @model.on 'change', @render, @
 
   render: ->
-    @$el.children.detach()
+    @$el.children().detach()
     @$el.html @template @model.attributes

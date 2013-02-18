@@ -1,6 +1,6 @@
 class window.Deck extends Backbone.Collection
 
-  model: Card
+  # model: Card
 
   initialize: ->
     @add _(_.range(1, 53)).shuffle().map (card) ->
@@ -8,7 +8,4 @@ class window.Deck extends Backbone.Collection
         rank: card % 13,
         suit: Math.floor(card / 13),
 
-  deal: -> new Hand collection: [
-    @deck.pop()
-    @deck.pop()
-  ]
+  deal: -> new Hand [ @pop(), @pop() ]
