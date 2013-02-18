@@ -32,8 +32,6 @@ class window.BlackjackView extends Backbone.View
   render: ->
     @$el.children().detach()
     @$el.html @template()
-    # debugger
-    # @$('.player-cards').append @playerHandView.render()
-    console.log(@$el.html())
-    # @$('.dealer-cards').append @dealerHandView.render()
-    
+    @$('.player-cards').append @playerHandView.render()
+    @$('.dealer-cards').append @dealerHandView.render()
+    @$el
