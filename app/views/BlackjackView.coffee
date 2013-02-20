@@ -24,13 +24,15 @@ class window.BlackjackView extends Backbone.View
 
   initialize: ->
     @render()
+    #all calls to 'attributes' should be a 'get' instead!
     @playerHandView = new HandView collection: @model.attributes.playerHand
     @$('.player-cards').append @playerHandView.el
     @model.attributes.playerHand.on 'change', => @render
     @dealerHandView = new HandView collection: @model.attributes.dealerHand
     @$('.dealer-cards').append @dealerHandView.el
+    #why does the 'add' method not incur a 'change' event??
     @model.attributes.dealerHand.on 'change', => @render
 
   render: ->
-    @$el.children().detach()
+    @$el.children().detach() #this is a crazy line that you just have to do.
     @$el.html @template()
