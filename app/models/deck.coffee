@@ -1,5 +1,5 @@
 class window.Deck extends Backbone.Collection
-
+  #this shouldn't break it-- but it did
   # model: Card
 
   initialize: ->
@@ -17,3 +17,4 @@ class window.Deck extends Backbone.Collection
     new Hand [ coveredCard, @pop()]
   hit: (hand) ->
     hand.add(@pop())
+#good refactor-- take the "hit" method and bring it to the hand, instead of bringing the hand to the deck.
