@@ -1,5 +1,7 @@
 class window.Hand extends Backbone.Collection
 
+  initialize: (array, @deck) ->
+
   # model: Card
   scores: ->
     #The scores are an array of potential scores.
@@ -9,6 +11,4 @@ class window.Hand extends Backbone.Collection
     score = @reduce (score, card) -> score + card.value()
     if hasAce then [score, score + 10] else [score]
 
-#add hit here, take it out of the deck model:
-
-# hit: -> @add @get('deck').pop()
+  hit: -> @add(@deck.pop()).last()

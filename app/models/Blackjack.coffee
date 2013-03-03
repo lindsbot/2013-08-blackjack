@@ -1,10 +1,10 @@
+#todo: change this to be App
 class window.Blackjack extends Backbone.Model
 
   initialize: ->
-    
     @set 'deck', new Deck
-    #should I be accessing the attributes directly?
-    #nope! This should be done with @get:
+
+    #todo: This should be done with @get
     #@set 'playerHand', @get('deck').dealPlayer()
     #@set 'dealerHand', @get('deck').dealPlayer()
     @set 'playerHand', @attributes.deck.dealPlayer()
