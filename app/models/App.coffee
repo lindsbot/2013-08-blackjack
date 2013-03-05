@@ -1,5 +1,5 @@
 #todo: change this to be App
-class window.Blackjack extends Backbone.Model
+class window.App extends Backbone.Model
 
   initialize: ->
     @set 'deck', new Deck

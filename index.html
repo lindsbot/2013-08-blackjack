@@ -1,7 +1,9 @@
 <html>
   <head>
     <title>Blackjack</title>
-
+    <link href="styles/app.css" rel="stylesheet" type="text/css" media="screen">
+  </head>
+  <body>
     <script src="lib/jquery-1.8.3.min.js"></script>
     <script src="lib/underscore.js"></script>
     <script src="lib/backbone.js"></script>
@@ -9,22 +11,12 @@
     <script src="compiled/app/models/Card.js"></script>
     <script src="compiled/app/models/Hand.js"></script>
     <script src="compiled/app/models/Deck.js"></script>
-    <script src="compiled/app/models/Blackjack.js"></script>
+    <script src="compiled/app/models/App.js"></script>
+
     <script src="compiled/app/views/CardView.js"></script>
     <script src="compiled/app/views/HandView.js"></script>
-    <script src="compiled/app/views/BlackjackView.js"></script>
+    <script src="compiled/app/views/AppView.js"></script>
 
-    <link href="style.css" rel="stylesheet" type="text/css" media="screen">
-
-  </head>
-  <body>
-  <script type="text/javascript">
-    // Instantiate a blackjack view for the entire page.
-    //This is a top level view. It does not answer to anything.
-    $('body').append(new BlackjackView({
-      model: new Blackjack()
-    }).el);
-  </script>
-
+    <script src="compiled/app/main.js"></script>
   </body>
 </html>

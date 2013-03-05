@@ -1,4 +1,4 @@
-class window.BlackjackView extends Backbone.View
+class window.AppView extends Backbone.View
 
   #todo: move some of this into the game view and make a corresponding game model
 
