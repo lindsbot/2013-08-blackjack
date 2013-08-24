@@ -58,4 +58,6 @@ class window.App extends Backbone.Model
       if @get('dealerScore') > @get('playerScore') then alert loseSring
       else if @get('dealerScore') < @get('playerScore') then alert winString
       else alert tieString
+    if @get('deck').length > 10 then (@set 'playerHand', @get('deck').dealPlayer()) && (@set 'dealerHand', @get('deck').dealDealer())
+    @trigger 'gameOver'
 

@@ -12,6 +12,8 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @render()
+    @model.on 'gameOver', () =>
+      @render()
 
   render: ->
     @$el.children().detach()
