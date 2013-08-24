@@ -5,8 +5,9 @@ class window.Hand extends Backbone.Collection
   initialize: (array, @deck, @isDealer) ->
 
   hit: ->
-    @add(@deck.pop()).last()
+    @add(@deck.pop())
     @trigger 'hit'
+    @last()
 
 # this is the score the viewer sees
   scores: ->
@@ -38,6 +39,5 @@ class window.Hand extends Backbone.Collection
     @trigger 'stand'
 
   isBusted: ->
-    console.log _(@scores()).min() > 21
     _(@scores()).min() > 21
   # @get('score').set('score', @scores())
