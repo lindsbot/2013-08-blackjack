@@ -6,7 +6,7 @@ class window.Hand extends Backbone.Collection
 
   hit: ->
     @add(@deck.pop()).last()
-    trigger 'hit'
+    @trigger 'hit'
 
 # this is the score the viewer sees
   scores: ->
@@ -17,7 +17,7 @@ class window.Hand extends Backbone.Collection
       memo or card.get('value') is 1
     , false
     score = @reduce (score, card) ->
-      score + if card.get 'revealed' then card.get 'value' else 0
+      score + if card.get('revealed') then card.get('value') else 0
     , 0
     if hasAce then [score, score + 10] else [score]
 
@@ -35,8 +35,9 @@ class window.Hand extends Backbone.Collection
 #     if hasAce then [score, score + 10] else [score]
 
   stand: ->
-    trigger 'changeTurn'
+    @trigger 'stand'
 
   isBusted: ->
-    _(@scores).min() > 21
+    console.log _(@scores()).min() > 21
+    _(@scores()).min() > 21
   # @get('score').set('score', @scores())
