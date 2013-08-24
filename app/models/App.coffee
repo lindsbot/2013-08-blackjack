@@ -7,19 +7,8 @@ class window.App extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
     # @set 'playerTurn', true
     # @on 'changeTurn', @changeTurn()
-    @set 'playerScore', @get('playerHand').scores()
-    @set 'dealerScore', @get('dealerHand').scores()
-    # double arrow !!!!
-    @get('playerHand').on 'hit', () =>
-      @set 'playerScore', @get('playerHand').scores()
-      @set 'dealerScore', @get('dealerHand').scores()
-      if (@get('playerHand').isBusted() || @get('dealerHand').isBusted()) then @gameOver()
+    @newGame()
 
-    @get('playerHand').on 'stand', () =>
-      @dealerPlay()
-
-    @get('dealerHand').on 'hit', () =>
-      @dealerPlay()
 
     #@get('dealerHand').on('hit', @dealerPlay())
 
@@ -34,6 +23,21 @@ class window.App extends Backbone.Model
   # if dealer score < 17, hit --> trigger everything after flip again if they hit
   # else stand
   # on dealer stand, GAME OVERRRR
+  newGame: =>
+    @set 'playerScore', @get('playerHand').scores()
+    @set 'dealerScore', @get('dealerHand').scores()
+    # double arrow !!!!
+    @get('playerHand').on 'hit', () =>
+      @set 'playerScore', @get('playerHand').scores()
+      @set 'dealerScore', @get('dealerHand').scores()
+      if (@get('playerHand').isBusted() || @get('dealerHand').isBusted()) then @gameOver()
+
+    @get('playerHand').on 'stand', () =>
+      @dealerPlay()
+
+    @get('dealerHand').on 'hit', () =>
+      @dealerPlay()
+
   dealerPlay: =>
     if !(@get('dealerHand').models[0].get('revealed')) then @get('dealerHand').models[0].flip()
     @set 'dealerScore', @get('dealerHand').scores()
@@ -58,6 +62,9 @@ class window.App extends Backbone.Model
       if @get('dealerScore') > @get('playerScore') then alert loseSring
       else if @get('dealerScore') < @get('playerScore') then alert winString
       else alert tieString
-    if @get('deck').length > 10 then (@set 'playerHand', @get('deck').dealPlayer()) && (@set 'dealerHand', @get('deck').dealDealer())
-    @trigger 'gameOver'
+    if @get('deck').length > 10
+      (@set 'playerHand', @get('deck').dealPlayer()) && (@set 'dealerHand', @get('deck').dealDealer())
+      @trigger 'gameOver'
+      @newGame()
+    else @initialize()
 
