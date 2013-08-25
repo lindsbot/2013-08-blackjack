@@ -9,8 +9,16 @@
 
 .covered {
   background-color: black;
+  z-index: 100;
 }
 
 .hand {
   overflow: auto;
+}
+
+image {
+  position: absolute;
+  width: 100px;
+  height: 150px;
+  zoom: 2;
 }
